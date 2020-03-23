@@ -1,30 +1,38 @@
-import * as React from 'react';
-
+import React, { useContext  } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { createStackNavigator } from '@react-navigation/stack';
 
-import Icon from "@expo/vector-icons/MaterialIcons";
+import { ThemeContext } from 'styled-components';
 
-import Feed from '$root/Pages/Feed';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import {  TransitionPresets  } from '@react-navigation/stack';
+import Main from './Routes/BottomTabsNavigator';
 
-const { Screen, Navigator } = createBottomTabNavigator();
+const { Screen, Navigator } = createMaterialTopTabNavigator();
 
-function Routes() {
+function Routes() {  
+  // const themeContext = useContext(ThemeContext).colors;
   return (
-    <NavigationContainer>
-      <Navigator 
-        initialRouteName="Feed"
+    <NavigationContainer independent={true}>
+      <Navigator
+        initialRouteName="Stories"
+        tabBarPosition="bottom"
+        keyboardDismissMode="on-drag"
+        tabBar={() => {}}
         tabBarOptions={{
-          activeTintColor: '#e91e63',
-        }}>
-        <Screen name="Feed" component={Feed}
-          options={{
-            tabBarLabel: 'Feed',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="home" color={color} size={size} />
-            ),
-          }}/>
+          headerStyle: {
+              // backgroundColor: themeContext.secundary,
+              height: 60,
+          },
+          gestureEnabled: true,
+          cardOverlayEnabled: true,                    
+          // headerStyle: { backgroundColor: themeContext.secundary },
+          ...TransitionPresets.ModalPresentationIOS,
+        }}
+        headerMode="none" 
+        mode="modal"
+      >
+
+        <Screen name="Main" component={Main}/>
 
       </Navigator>
     </NavigationContainer>

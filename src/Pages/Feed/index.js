@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { FlatList } from 'react-native';
 
 import api from '../../services/api';
 
 import LazyImage from '../../components/LazyImage';
 
-import { Container, Post, Header, Avatar, Name, Description, Loading } from './styles';
+import { Container, FlatList, Post, Header, Avatar, Name, Description, Loading } from './styles';
 
 export default function Feed() {
   const [feed, setFeed] = useState([]);
