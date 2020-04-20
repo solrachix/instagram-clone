@@ -5,6 +5,7 @@ import OpenSans from './fonts/OpenSans';
 
 export default createGlobalStyle`
   * {
+    /* overflow: hidden; */
     list-style:none;
     text-decoration:none;
     margin:0; padding:0;
@@ -20,6 +21,20 @@ export default createGlobalStyle`
     /* color: ${({ theme }) => theme.colors.text}; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar {
+      width: 2px;
+      height: 4px; 
+      background: transparent;
+      cursor: grab;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: ${({ theme }) => theme.colors.primary};
+        border-radius: 50px;
+    }
   }
 
   html, body{    

@@ -16,7 +16,7 @@ export function Airplane({ color = '#000', strokeWidth = 0, Width = 16, ...props
     <svg x="0px" y="0px"
       fill={color}
       stroke={color}
-      stroke-width={strokeWidth}
+      strokeWidth={strokeWidth}
       width={Width}
       height={Width}
       viewBox="0 0 512.001 512.001"

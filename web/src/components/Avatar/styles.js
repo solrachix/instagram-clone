@@ -14,11 +14,13 @@ import styled from 'styled-components';
 
 // `;
 
-export const Story = styled.div`
+export const Story = styled.button`
   width: ${({ width }) => width}px;
   height: ${({ width }) => width}px;
   overflow:hidden;
   z-index: 5;
+
+  background: transparent;
 
   display: flex;
   flex-direction: column;
@@ -27,11 +29,16 @@ export const Story = styled.div`
   img {
     width: ${({ width }) => ((width/ 100) * 70)}px;
     border-radius:50%;
+
+    margin-top: 100%;
   }
   svg {
-    position: absolute;
+    /* position: absolute; */
     width: ${({ width }) => width}px;
     height: ${({ width }) => width}px;
+    
+    /* margin-top: -60%; */
+    transform: translateY(-85%);
 
     fill:none;
     /* stroke:#8a3ab8; */

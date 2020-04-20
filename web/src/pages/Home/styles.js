@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { rgba } from 'polished';
 
+import avatar from '../../components/Avatar';
+
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -50,12 +52,82 @@ export const AddPhoto = styled.button`
   border-radius: 5px;
   color: ${({ theme })=> theme.colors.text};
   font-size: 12px;
-  
+
   display: flex;
   justify-content: space-evenly;
   align-items:center;
 `;
 
+
+export const Body = styled.div`
+  width: 100%;
+  max-height: 84%;
+  height: 84%;
+
+  margin-top: 6%;
+
+  overflow: hidden;
+  overflow-y: auto;
+`;
+
+export const Stories = styled.div`
+  width: 100%;
+  height: 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+export const StoriesContent = styled.div`
+  width: 100%;
+
+  margin-top: 10px;
+
+  overflow: hidden;
+  overflow-x: auto;
+  scrollbar-width: 1px;
+
+  -webkit-overflow-scrolling: touch; 
+
+  &::-webkit-scrollbar-thumb {    
+    background: ${({ theme }) => theme.colors.primary};
+    border-radius: 50px;
+  }
+
+  div{
+    min-width: 1000px;
+    min-height: 90px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch; 
+  }
+`;
+
+export const Avatar =  styled(avatar)`
+  flex: 0 1 auto;
+`;
+
+
+
+
+
+
+
+
+export const Text = styled.p`
+  margin-top: ${({ top = 10 }) => top}px;
+  line-height: 10px;
+
+  color: ${({ color, theme }) => color ? color : theme.colors.text };
+
+  font-size: ${({ size = 14 }) => size}px;
+  font-weight: ${({ bold = 0 }) => bold ? 'bold' : bold };
+  font-family: 'Open Sans', Roboto, Helvetica, Arial, sans-serif;
+`;
 
 
 //icons
