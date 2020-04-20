@@ -7,7 +7,7 @@ export default {
 
       text: '#fff',
  
-      pink: '#E2336B',
+      red: '#E2336B',
       yellow: '#FCAC46',
       purple: '#8a3ab8'
   }

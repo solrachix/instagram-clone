@@ -121,7 +121,7 @@ export const Row = styled.div`
     border-spacing: 10px 0px;
     border-image: 
       linear-gradient(to top, transparent, transparent,
-      ${({ theme })=>theme.colors.pink},
+      ${({ theme })=>theme.colors.red},
       ${({ theme })=>theme.colors.yellow},
       transparent, transparent
       );
