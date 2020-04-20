@@ -28,7 +28,9 @@ export const Story = styled.button`
   align-items: center;
   img {
     width: ${({ width }) => ((width/ 100) * 70)}px;
-    border-radius:50%;
+    height: ${({ width }) => ((width/ 100) * 70)}px;
+    
+    border-radius:100%;
 
     margin-top: 100%;
   }
