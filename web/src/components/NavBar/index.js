@@ -14,10 +14,10 @@ import { Container,
    ToRecall
 } from './styles';
 
-export default function NavBar({ componet }) {
+export default function NavBar({ componet, ...props }) {
   const themeContext = useContext(ThemeContext).colors;
   return (
-    <Container>
+    <Container {...props}>
       <Bar>
         <Header>          
           <Logo src={InstaLogo}/>
@@ -78,9 +78,9 @@ export default function NavBar({ componet }) {
           </Footer>
         </Perfil>
 
-        <ToRecall />
+        {/* <ToRecall /> */}
       </Bar>
-      { componet }
+      {/* { componet } */}
 
 
 

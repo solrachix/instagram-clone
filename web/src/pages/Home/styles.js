@@ -6,6 +6,10 @@ import avatar from '../../components/Avatar';
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
+
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
 `;
 
 
@@ -151,4 +155,28 @@ export const Plus = styled(FiPlus)`
 
   background: #fff3;
   border-radius: 50px;
+`;
+
+
+
+
+
+
+// ============================
+
+export const ToRecall = styled.div`
+  position: absolute;
+  top: 80%;
+  margin-left: 17.5%;
+
+  width: 50px;
+  height: 50px;
+
+  background-color: red;
+
+  z-index: 30;
+  cursor: grab;
+  &:active{
+    cursor: grabbing;
+  }
 `;

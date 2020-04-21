@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import airplane from '../../assets/icons/airplane.svg';
 
 export const Container = styled.div`
-  width: 100%;
+  width: 20%;
   height: 100%;
 
   display: flex;
@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Bar = styled.div`
-  width: 20%;
+  width: 100%;
   height: 100%;
   padding: 20px;
 

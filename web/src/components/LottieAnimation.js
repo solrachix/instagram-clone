@@ -8,7 +8,9 @@ const LottieAnimation = forwardRef((
     isStopped=false,
     isPaused=false,
     animationData, 
-    size=50, 
+    size=50,
+    height = false,
+    onClick=()=>{},
     ...props 
   }, ref) => {
 
@@ -21,16 +23,18 @@ const LottieAnimation = forwardRef((
     }
   };
   return (
-    <Lottie options={defaultOptions}
-      height={size}
-      width={size}
-      isStopped={isStopped}
-      isPaused={isPaused}
-      isClickToPauseDisabled={true}
-
-      style={{ margin: 0 }}
-      ref={ref}
-      {...props} />
+    <div onClick={onClick}>
+      <Lottie options={defaultOptions}
+        height={height ? height : size}
+        width={size}
+        isStopped={isStopped}
+        isPaused={isPaused}
+        isClickToPauseDisabled={true}
+        
+        style={{ margin: 0 }}
+        ref={ref}
+        {...props} />
+    </div>
   )
 })
 

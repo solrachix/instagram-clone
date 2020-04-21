@@ -13,6 +13,7 @@ const getVal = (elem, style) => parseInt(window.getComputedStyle(elem).getProper
 const Item = ({ img, avatar, altor, likes, comments, galleryRef }) => {
   const [ animationStart, setAnimationStart ] = useState(false);
   const [ isStoppedAnimation, setIsStoppedAnimation ] = useState(false);
+  const [ height, setHeight ] = useState(100);
   const heartbeatAnimationRef = createRef();
 
   const ContainerRef  = createRef(),
@@ -23,19 +24,22 @@ const Item = ({ img, avatar, altor, likes, comments, galleryRef }) => {
     const gallery   = galleryRef.current,
           Img       = imgRef.current,
           getHeight = (item) => contentRef.current.getBoundingClientRect().height;
+    
+        
+    // setHeight(50);
 
     Img.classList.add('byebye');
     if (Img.complete) {
-        console.log(Img.src);
+      console.log(Img.src);
     }
     else {
       Img.addEventListener('load', () => {
-            const altura = getVal(gallery, 'grid-auto-rows');
-            const gap = getVal(gallery, 'grid-row-gap');
-            const gitem = Img.parentElement.parentElement;
-            gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
-            Img.classList.remove('byebye');
-        });
+        const altura = getVal(gallery, 'grid-auto-rows');
+        const gap = getVal(gallery, 'grid-row-gap');
+        const gitem = Img.parentElement.parentElement;
+        gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
+        Img.classList.remove('byebye');
+      });
     }
 
 
@@ -53,12 +57,13 @@ const Item = ({ img, avatar, altor, likes, comments, galleryRef }) => {
           .gridRowEnd = "span " + Math.ceil((getHeight(Container) + gap) / (altura + gap));
   };
 
-  const handleClick = () => {
-    setIsStoppedAnimation(false);
+  const handleClick = async () => {
+    await setIsStoppedAnimation(false);
     // setAnimationStart(false);
-    console.log(animationStart, heartbeatAnimationRef.current);
-
-    setAnimationStart(true);
+    // console.log(animationStart, isStoppedAnimation, heartbeatAnimationRef.current);
+    // console.log(ContainerRef.current.style);
+    
+    await setAnimationStart(true);
 
     setTimeout(function() {
       setAnimationStart(false);
@@ -70,13 +75,12 @@ const Item = ({ img, avatar, altor, likes, comments, galleryRef }) => {
   return (
     <ItemContainer
       ref={ContainerRef}
-      onDoubleClick={handleClick}
       // onClick={elem => elem.currentTarget.classList.toggle('full') }
     >
-      <div 
+      <div
         className="content"
         ref={contentRef}>
-        <img ref={imgRef} src={img} alt=""/>
+        <img ref={imgRef} onDoubleClick={handleClick} src={img} alt=""/>
 
         <ItemFooter>
           <ItemAutor>
@@ -90,7 +94,7 @@ const Item = ({ img, avatar, altor, likes, comments, galleryRef }) => {
               size={20}
               animationData={like}
               autoplay={animationStart}
-              onClick={()=> console.log('aaa')} />
+              onClick={handleClick} />
             <Text size={14} top={0} left={-8} right={5}>{likes}</Text>
 
             <Comment size={20} />
@@ -102,13 +106,13 @@ const Item = ({ img, avatar, altor, likes, comments, galleryRef }) => {
 
       <Animation 
         ref={heartbeatAnimationRef}
-        animationStart={animationStart}
         animationData={heart}
         autoplay={animationStart}
         isStopped={isStoppedAnimation}
         // loop={true}
 
         size={'inherit'}
+        // height={height}
         style={{
           position: 'relative',
           margin: 0,
