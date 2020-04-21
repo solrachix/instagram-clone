@@ -6,19 +6,18 @@ export const Container = styled.div`
   width: 20%;
   height: 100%;
 
-  display: flex;
-
-`;
-
-export const Bar = styled.div`
-  width: 100%;
-  height: 100%;
   padding: 20px;
+  padding-right: 5px;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
+  & div{
+    transition: 1s;
+    flex: auto;
+  }
 `;
 
 export const Header = styled.header`
@@ -46,22 +45,30 @@ export const Perfil = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  ${({ width }) => console.log(width)}
+  img {
+    width: ${({ width }) => width<100 ? 50 : null};
+  }
 `;
 
 export const Text = styled.p`
   margin-top: ${({ top = 10 }) => top}px;
+  margin-bottom: ${({ bottom = 0 }) => bottom}px;
+  margin-left: ${({ left = 0 }) => left}px;
+  margin-right: ${({ right = 0 }) => right}px;
   line-height: 10px;
 
   color: ${({ color, theme }) => color ? color : theme.colors.text };
 
-  font-size: ${({ size = 14 }) => size}px;
+  font-size: ${({ size = 0.8 }) => size}em;
   font-weight: ${({ bold = 0 }) => bold ? 'bold' : bold };
   font-family: 'Open Sans', Roboto, Helvetica, Arial, sans-serif;
 `;
 
 export const Neck = styled.div`
   width: 100%;
-  height: 50px;
+  height: ${({ parentWidth, delimiter }) => parentWidth < delimiter ? 100 : 50}px;
 
   /* padding: 10px; */
   margin-top: 30px;
@@ -70,12 +77,17 @@ export const Neck = styled.div`
   justify-content: center;
   align-items:center;
 
-  div:first-child{
-    border-right: 1px solid ${({ theme }) => theme.colors.secundary}
-  }
-  div:last-child {
-    border-left: 1px solid ${({ theme }) => theme.colors.secundary}
-  }
+  ${({ parentWidth, delimiter }) => parentWidth < delimiter ? null : `
+    div:first-child{
+      border-right: 1px solid ${({ theme }) => theme.colors.secundary}
+    }
+    div:last-child {
+      border-left: 1px solid ${({ theme }) => theme.colors.secundary}
+    }
+  `};
+  
+
+  flex-direction: ${({ parentWidth, delimiter }) => parentWidth < delimiter ? 'column': 'row'};
 `;
 
 export const Column = styled.div`
@@ -111,7 +123,7 @@ export const Row = styled.div`
   height: 40px;
 
   display: flex;
-  justify-content: flex-start;
+  justify-content: ${({ parentWidth, delimiter }) => parentWidth < delimiter ? 'center': 'flex-start'};
   align-items:center;
 
   cursor: pointer;
@@ -146,18 +158,6 @@ export const Footer = styled.div`
 `;
 
 
-// ============================
-
-export const ToRecall = styled.div`
-  position: absolute;
-  top: 80%;
-  margin-left: 10%;
-
-  width: 50px;
-  height:50px;
-
-  background-color: red;
-`;
 
 
 // ICONS 

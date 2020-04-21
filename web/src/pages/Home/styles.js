@@ -72,6 +72,8 @@ export const Body = styled.div`
 
   overflow: hidden;
   overflow-y: auto;
+
+  user-select: none;
 `;
 
 export const Stories = styled.div`

@@ -48,7 +48,7 @@ export default function Home() {
           windowWidth
         });
       mouseY = window.event ? window.event.clientY : e.pageY;
-      console.log('X: ', mouseX);
+      // console.log('X: ', mouseX);
       
       if(mouseX >= limitInicial && mouseX <= limitFinal){
         elem.style.marginLeft = `${mouseX}%`;
@@ -58,7 +58,7 @@ export default function Home() {
         navbar.style.width = `${mouseX}%`;
         content.style.width = `${limitFinal - mouseX + 80}%`;
         
-        console.log(navbar,content)
+        // console.log(navbar,content)
       }
 
       // elem.style.transform = `translateX(${mouseX/5}px)`;

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState, memo } from 'react';
 import { ThemeContext } from 'styled-components';
 import { darken } from 'polished';
 
@@ -9,90 +9,109 @@ import { FiLogOut } from 'react-icons/fi'
 
 import Avatar from '../Avatar';
 import { Container,
-   Bar, Header, Logo,
-   Perfil, Text, Neck, Column, Body, Row, Footer,
-   ToRecall
+   Header, Logo,
+   Perfil, Text, Neck, Column, Body, Row, Footer
 } from './styles';
 
-export default function NavBar({ componet, ...props }) {
+function NavBar({ componet, ...props }) {
+  const delimiter = 100;
+  const [ width, setWidth ] = useState(100);
+  const [ styleForText, setStyleForText ] = useState({});
   const themeContext = useContext(ThemeContext).colors;
+
+  useEffect(()=>{
+    setStyleForText({
+      marginLeft: 30,
+      display: width < delimiter ? 'none': null,
+    })
+  }, [width]);
+
+  useEffect(()=>{
+    const observer = new MutationObserver(mutations => {
+      setWidth(mutations[0].target.offsetWidth);
+      // console.log(mutations[0].target.offsetWidth)
+    });
+
+    const target = document.getElementById('#navbar');
+    observer.observe(target, {
+      attributes: true
+    });
+  },[]);
+
   return (
     <Container {...props}>
-      <Bar>
-        <Header>          
-          <Logo src={InstaLogo}/>
-        </Header>
+      <Header>
+        <Logo src={InstaLogo}/>
+      </Header>
 
-        <Perfil>
-          <Avatar 
-            loading={false}
-            width={100}
-            img="https://avatars2.githubusercontent.com/u/57706806?s=460&u=d99f75dd759767691aecc7463b92fa022a4b01ee&v=4" />
+      <Perfil width={width}>
+        <Avatar className="predestinedToDisappear"
+          loading={false}
+          width={width<delimiter ? 50 : 100}
+          img="https://avatars2.githubusercontent.com/u/57706806?s=460&u=d99f75dd759767691aecc7463b92fa022a4b01ee&v=4" />
 
-          <Text size={14} bold={600} top={20}>Carlos Miguel</Text>
-          <Text size={12} bold={500} color={darken(0.6, themeContext.text)}>@solrachix</Text>
-        
-          <Neck>
-            <Column>
-              <Text size={14}>2.5 k</Text>
-              <Text size={12} color={themeContext.secundary}>Posts</Text>
-            </Column>
-            <Column>
-              <Text size={14}>526</Text>
-              <Text size={12} color={themeContext.secundary}>Followers</Text>
-            </Column>
-            <Column>
-              <Text size={14}>46</Text>
-              <Text size={12} color={themeContext.secundary}>Following</Text>
-            </Column>
-          </Neck>
+        <Text style={{display: width < delimiter ? 'none': null}} size={0.8} bold={600} top={20}>Carlos Miguel</Text>
+        <Text size={0.6} bold={500} color={darken(0.6, themeContext.text)}>@solrachix</Text>
+      
+        <Neck parentWidth={width} delimiter={delimiter}>
+          <Column>
+            <Text size={0.8}>2.5 k</Text>
+            <Text size={0.6} color={themeContext.secundary}>Posts</Text>
+          </Column>
+          <Column>
+            <Text size={0.8}>526</Text>
+            <Text size={0.6} color={themeContext.secundary}>Followers</Text>
+          </Column>
+          <Column>
+            <Text size={0.8}>46</Text>
+            <Text size={0.6} color={themeContext.secundary}>Following</Text>
+          </Column>
+        </Neck>
 
-          <Body>
-            <Row Featured>
-              <GoSearch size={20} color={themeContext.text} />
-              <Text style={{ marginLeft: 30}} size={14} bold={0} top={0}>Search</Text>
-            </Row>
-            <Row Featured>
-              <GoSearch size={20} color={themeContext.text} />
-              <Text style={{ marginLeft: 30}} size={14} bold={0} top={0}>Search</Text>
-            </Row>
-            <Row Featured>
-              <GoSearch size={20} color={themeContext.text} />
-              <Text style={{ marginLeft: 30}} size={14} bold={0} top={0}>Search</Text>
-            </Row>
-            <Row Featured>
-              <GoSearch size={20} color={themeContext.text} />
-              <Text style={{ marginLeft: 30}} size={14} bold={0} top={0}>Search</Text>
-            </Row>
-            <Row Featured>
-              <GoSearch size={20} color={themeContext.text} />
-              <Text style={{ marginLeft: 30}} size={14} bold={0} top={0}>Search</Text>
-            </Row>
-          </Body>
+        <Body>
+          <Row Featured parentWidth={width} delimiter={delimiter}>
+            <GoSearch size={16} color={themeContext.text} />
+            <Text style={styleForText} size={0.8} bold={0} top={0}>Search</Text>
+          </Row>
+          <Row Featured parentWidth={width} delimiter={delimiter}>
+            <GoSearch size={16} color={themeContext.text} />
+            <Text style={styleForText} size={0.8} bold={0} top={0}>Search</Text>
+          </Row>
+          <Row Featured parentWidth={width} delimiter={delimiter}>
+            <GoSearch size={16} color={themeContext.text} />
+            <Text style={styleForText} size={0.8} bold={0} top={0}>Search</Text>
+          </Row>
+          <Row Featured parentWidth={width} delimiter={delimiter}>
+            <GoSearch size={16} color={themeContext.text} />
+            <Text style={styleForText} size={0.8} bold={0} top={0}>Search</Text>
+          </Row>
+          <Row Featured parentWidth={width} delimiter={delimiter}>
+            <GoSearch size={16} color={themeContext.text} />
+            <Text style={styleForText} size={0.8} bold={0} top={0}>Search</Text>
+          </Row>
+        </Body>
 
-          <Footer>
-            <Row>
-              <FiLogOut size={20} color={themeContext.text} />
-              <Text style={{ marginLeft: 30}} size={14} bold={0} top={0}>Search</Text>
-            </Row>
-          </Footer>
-        </Perfil>
-
-        {/* <ToRecall /> */}
-      </Bar>
-      {/* { componet } */}
+        <Footer>
+          <Row parentWidth={width} delimiter={delimiter}>
+            <FiLogOut size={16} color={themeContext.text} />
+            <Text style={styleForText} size={0.8} bold={0} top={0}>Search</Text>
+          </Row>
+        </Footer>
+      </Perfil>
 
 
 
-        <svg viewBox="0 0 100 100">
-          <defs>
-            <linearGradient id="gradient" x1="180" y1="14" x2="28" y2="182" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#FCAC46"/>
-              <stop offset="60%" stopColor="#E2336B"/>
-              <stop offset="40%" stopColor="#482066"/>
-            </linearGradient>
-          </defs>
-        </svg>
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="gradient" x1="180" y1="1" x2="28" y2="182" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#FCAC46"/>
+            <stop offset="60%" stopColor="#E2336B"/>
+            <stop offset="40%" stopColor="#482066"/>
+          </linearGradient>
+        </defs>
+      </svg>
     </Container>
   );
 }
+
+export default memo(NavBar);
