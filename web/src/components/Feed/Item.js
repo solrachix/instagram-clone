@@ -28,19 +28,19 @@ const Item = ({ img, avatar, altor, likes, comments, galleryRef }) => {
         
     // setHeight(50);
 
-    Img.classList.add('byebye');
-    if (Img.complete) {
-      console.log(Img.src);
-    }
-    else {
+    // Img.classList.add('byebye');
+    // if (Img.complete) {
+    //   console.log(Img.src);
+    // }
+    // else {
       Img.addEventListener('load', () => {
         const altura = getVal(gallery, 'grid-auto-rows');
         const gap = getVal(gallery, 'grid-row-gap');
         const gitem = Img.parentElement.parentElement;
         gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
-        Img.classList.remove('byebye');
+        // Img.classList.remove('byebye');
       });
-    }
+    // }
 
 
     window.addEventListener('resize', () => resize({ gallery, getHeight }));

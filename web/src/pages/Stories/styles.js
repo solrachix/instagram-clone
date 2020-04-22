@@ -10,8 +10,8 @@ export const Container = styled.div`
   height: 100vh;
 
   /* padding-bottom: 20px; */
-  background: ${({ theme }) => theme.colors.primary };
-
+  /* background: ${({ theme }) => theme.colors.primary }; */
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -207,29 +207,9 @@ export const Button = styled.button`
 
 
 
-export const Header = styled.header`
-  width: 100%;
-  height: 50px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
-`;
-
-export const Img = styled.img`
-  width: 100%;
-  height: 100%;
-`;
-
-
 //icons
 
-const { IoIosArrowBack, IoIosArrowForward } = require('react-icons/io');
+const { IoIosArrowBack, IoIosArrowForward, IoMdClose } = require('react-icons/io');
 
 export const IconPrev = styled(IoIosArrowBack)`
   color: ${({ theme }) => theme.colors.primary };
@@ -237,4 +217,19 @@ export const IconPrev = styled(IoIosArrowBack)`
 
 export const IconNext = styled(IoIosArrowForward)`
   color: ${({ theme }) => theme.colors.primary };
+`;
+
+
+export const GoOut = styled(IoMdClose)`
+  position: absolute;
+  top: 14%;
+  left: 108%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  color: ${({ theme }) => theme.colors.text };
 `;

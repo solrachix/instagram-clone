@@ -2,8 +2,7 @@ import React, { useEffect, createRef } from 'react';
 
 import Text from '../../components/Text';
 
-import { Container, IconPrev, IconNext, Content, Cub, Button, Header,
-  Img, Avatar } from './styles';
+import { Container, IconPrev, IconNext, Content, Cub, Button, GoOut } from './styles';
 
   const stories = [
     {
@@ -96,161 +95,166 @@ import { Container, IconPrev, IconNext, Content, Cub, Button, Header,
     },
   ];
   
-export default function Stories() {
+export default function Stories({ history }) {
   const ButtonPrevRef = createRef();
   const ButtonNextRef = createRef();
   const CubRef = createRef();
 
-  useEffect(()=> {
+  let faceIndex = 0;
+  let storieIndex = 0;
+  let imgIndex = 0;
+  let imgInterval = 0;
+  let imgProgress = 0;
+  let countRotation = 1;
+  let crrRotationDeg = 0;
+
+  const createElement = (tagName, props) => {
+    const element = document.createElement(tagName);
+
+    Object
+      .entries(props)
+      .forEach(([ key, value ]) => element.setAttribute(key, value));
+
+    return element;
+  };
+
+  const rotateCub = (rotation) => {    
+    const $cub      = CubRef.current;
+
+    $cub.style.transform = `rotateY(-${rotation}deg)`;
+  };
+
+  const renderInFace = (index, element) => {    
+    const $faces    = document.querySelectorAll('.face');
+
+    $faces[index].innerHTML = '';
+    $faces[index].append(element);
+  };
+
+  const createStorie = (storieData) => {    
     const $faces    = document.querySelectorAll('.face');
     const $cub      = CubRef.current;
     const $btnNext  = ButtonNextRef.current;
     const $btnPrev  = ButtonPrevRef.current;
 
-    let faceIndex = 0;
-    let storieIndex = 0;
-    let imgIndex = 0;
-    let imgInterval = 0;
-    let imgProgress = 0;
-    let countRotation = 1;
-    let crrRotationDeg = 0;
+    imgIndex = 0;
+    imgProgress = 0;
 
-    const createElement = (tagName, props) => {
-      const element = document.createElement(tagName);
+    const rootElement = createElement('div', {
+      class: 'instagram-stories__storie',
+    });
 
-      Object
-        .entries(props)
-        .forEach(([ key, value ]) => element.setAttribute(key, value));
-
-      return element;
-    };
-
-    const rotateCub = (rotation) => {
-      $cub.style.transform = `rotateY(-${rotation}deg)`;
-    };
-
-    const renderInFace = (index, element) => {
-      $faces[index].innerHTML = '';
-      $faces[index].append(element);
-    };
-
-    const nextFace = () => {
-      if (stories[storieIndex].images[imgIndex + 1]) {
-        imgIndex++;
-        imgProgress = 0;
-        return;
-      } else if (!stories[storieIndex + 1]) {
-        return;
-      }
-
-      storieIndex++;
-      countRotation++;
-      crrRotationDeg += 90
-      faceIndex = ((countRotation % 4) || 4) - 1;
-
-      if (!stories[storieIndex]) {
-        storieIndex = 0;
-      }
-
-      renderInFace(faceIndex, createStorie(stories[storieIndex]));
-      rotateCub(crrRotationDeg);
-    };
-
-    const prevFace = () => {
-      if (stories[storieIndex].images[imgIndex - 1]) {
-        imgIndex--;
-        imgProgress = 0;
-        return;
-      }
-
-      if (crrRotationDeg <= 0) return;
-
-      storieIndex--;
-      countRotation--;
-      crrRotationDeg -= 90;
-      faceIndex = ((countRotation % 4) || 4) - 1;
-
-      renderInFace(faceIndex, createStorie(stories[storieIndex]));
-      rotateCub(crrRotationDeg);
-    };
-
-    const createStorie = (storieData) => {
-      imgIndex = 0;
-      imgProgress = 0;
-
-      const rootElement = createElement('div', {
-        class: 'instagram-stories__storie',
-      });
-
-      const renderStorie = () => (
-        rootElement.innerHTML = `<header class="instagram-storie__header">
-                <div class="instagram-storie__header__user">
-                  <img
-                    alt="Foto do perfil do usuário"
-                    class="instagram-storie__header__user-image"
-                    src="${storieData.user.imageURL}"
-                  />
-                  <h2 class="instagram-storie__header__user-name">
-                    ${storieData.user.name}
-                  </h2>
-                </div>
-                <div class="instagram-storie__header__options">
-                  <span class="instagram-storie__header__options-circle"></span>
-                  <span class="instagram-storie__header__options-circle"></span>
-                  <span class="instagram-storie__header__options-circle"></span>
-                </div>
-              </header>
-              <div class="instagram-storie__progress">
-                ${storieData.images.map((_, index) =>(
-                  `
-                  <div class="instagram-storie__progress-item">
-                    <div
-                      class="instagram-storie__progress-item__bar"
-                      style="width: ${index === imgIndex ? `${imgProgress}%` : (
-                        index < imgIndex ? '100%' : '0%'
-                      )}"
-                    >
-                    </div>
-                  </div>
-                `
-                )).join('')}
+    const renderStorie = () => (
+      rootElement.innerHTML = `<header class="instagram-storie__header">
+              <div class="instagram-storie__header__user">
+                <img
+                  alt="Foto do perfil do usuário"
+                  class="instagram-storie__header__user-image"
+                  src="${storieData.user.imageURL}"
+                />
+                <h2 class="instagram-storie__header__user-name">
+                  ${storieData.user.name}
+                </h2>
               </div>
-              <div
-                class="instagram-storie__image"
-                style="background-image: url('${storieData.images[imgIndex]}')"
-              >
-              </div>`
-        );
+              <div class="instagram-storie__header__options">
+                <span class="instagram-storie__header__options-circle"></span>
+                <span class="instagram-storie__header__options-circle"></span>
+                <span class="instagram-storie__header__options-circle"></span>
+              </div>
+            </header>
+            <div class="instagram-storie__progress">
+              ${storieData.images.map((_, index) =>(
+                `
+                <div class="instagram-storie__progress-item">
+                  <div
+                    class="instagram-storie__progress-item__bar"
+                    style="width: ${index === imgIndex ? `${imgProgress}%` : (
+                      index < imgIndex ? '100%' : '0%'
+                    )}"
+                  >
+                  </div>
+                </div>
+              `
+              )).join('')}
+            </div>
+            <div
+              class="instagram-storie__image"
+              style="background-image: url('${storieData.images[imgIndex]}')"
+            >
+            </div>`
+      );
 
-      const startImgProgress = () => {
-        clearInterval(imgInterval);
+    const startImgProgress = () => {
+      clearInterval(imgInterval);
 
-        imgInterval = setInterval(() => {
-          imgProgress += 10 / 3;
+      imgInterval = setInterval(() => {
+        imgProgress += 10 / 3;
 
-          if (imgIndex === storieData.images.length) {
-            nextFace()
-            return;
-          }
+        if (imgIndex === storieData.images.length) {
+          nextFace()
+          return;
+        }
 
-          if (imgProgress > 100) {
-            imgIndex++;
-            imgProgress = 0;
-            return;
-          }
+        if (imgProgress > 100) {
+          imgIndex++;
+          imgProgress = 0;
+          return;
+        }
 
-          renderStorie();
-        }, 100);
-      };
-
-      renderStorie();
-      startImgProgress();
-
-      return rootElement;
+        renderStorie();
+      }, 100);
     };
 
-    $btnNext.addEventListener('click', nextFace);
-    $btnPrev.addEventListener('click', prevFace);
+    renderStorie();
+    startImgProgress();
+
+    return rootElement;
+  };
+
+  const nextFace = () => {
+
+    if (stories[storieIndex].images[imgIndex + 1]) {
+      imgIndex++;
+      imgProgress = 0;
+      return;
+    } else if (!stories[storieIndex + 1]) {
+      return;
+    }
+
+    storieIndex++;
+    countRotation++;
+    crrRotationDeg += 90
+    faceIndex = ((countRotation % 4) || 4) - 1;
+
+    if (!stories[storieIndex]) {
+      storieIndex = 0;
+    }
+
+    renderInFace(faceIndex, createStorie(stories[storieIndex]));
+    rotateCub(crrRotationDeg);
+  };
+
+  const prevFace = () => {
+    if (stories[storieIndex].images[imgIndex - 1]) {
+      imgIndex--;
+      imgProgress = 0;
+      return;
+    }
+
+    if (crrRotationDeg <= 0) return;
+
+    storieIndex--;
+    countRotation--;
+    crrRotationDeg -= 90;
+    faceIndex = ((countRotation % 4) || 4) - 1;
+
+    renderInFace(faceIndex, createStorie(stories[storieIndex]));
+    rotateCub(crrRotationDeg);
+  };
+
+  useEffect(()=> {
+    const $faces    = document.querySelectorAll('.face');
+    const $cub      = CubRef.current;
 
     $cub.style.transformOrigin = `center center ${(-$cub.clientWidth / 2)}px`;
     $faces[2].style.transform = `translateZ(-${$faces[2].clientWidth}px) rotateY(180deg) translateX(-100%)`;
@@ -259,17 +263,22 @@ export default function Stories() {
       $cub.style.transformOrigin = `center center ${(-$cub.clientWidth / 2)}px`;
       $faces[2].style.transform = `translateZ(-${$faces[2].clientWidth}px) rotateY(180deg) translateX(-100%)`;
     });
-
+    
     renderInFace(0, createStorie(stories[storieIndex]));
-  }, [])
+  }, []);
+
   return (
     <Container>
       {/* { stories.map(({ id, ...props }, index) => <Storie key={id} stories={stories.length} index={index} {...props} />)} */}
-    
-    
+
       <Content>
-        <Button ref={ButtonPrevRef} className="prev"><IconPrev size={20} /></Button>
-        <Button ref={ButtonNextRef} className="next"><IconNext size={20} /></Button>
+
+        <Button ref={ButtonPrevRef}
+          onClick={prevFace}
+          className="prev"><IconPrev size={20} /></Button>
+        <Button ref={ButtonNextRef}
+          onClick={nextFace}
+          className="next"><IconNext size={20} /></Button>
         
         <Cub ref={CubRef}>
           <div className="face face-up"></div>
@@ -277,6 +286,12 @@ export default function Stories() {
           <div className="face face-down"></div>
           <div className="face face-left"></div>
         </Cub>
+
+        <GoOut 
+          // onClick={()=> history.goBack()}          
+          onClick={()=> window.location.assign("http://localhost:3000/")}
+          size={30}
+        />
       </Content>
     </Container>
   );

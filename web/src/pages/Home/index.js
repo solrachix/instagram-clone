@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from 'react';
+import React, { useState, createRef } from 'react';
 
 import NavBar from '../../components/NavBar';
 import Input from '../../components/Input';
@@ -10,7 +10,7 @@ import { Container, Text,
   ToRecall, ArrrowLeft
 } from './styles';
 
-export default function Home() {
+export default function Home({history}) {
   const [ stories, setStories ] = useState([1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20]);
 
   const ToRecallRef = createRef();
@@ -107,9 +107,11 @@ export default function Home() {
                 <div>
                   {stories && stories.map(index => (
                     <Avatar key={index}
-                    loading={false}
-                    width={100}
-                    img="https://avatars2.githubusercontent.com/u/57706806?s=460&u=d99f75dd759767691aecc7463b92fa022a4b01ee&v=4" />
+                      // onClick={()=> history.push('/stories')}
+                      onClick={()=> window.location.assign("http://localhost:3000/stories")}
+                      loading={false}
+                      width={100}
+                      img="https://avatars2.githubusercontent.com/u/57706806?s=460&u=d99f75dd759767691aecc7463b92fa022a4b01ee&v=4" />
                   ))}
                 </div>
               </StoriesContent>

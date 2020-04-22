@@ -52,7 +52,7 @@ export const LogoName = styled.img`
   margin-top: 10px;
   margin-left: 10px;
 
-  filter: ${({ theme }) => theme.name == 'Dark' ? 'invert(1)' : null };
+  filter: ${({ theme }) => theme.name == 'Dark' ? null : 'invert(1)' };
 `;
 
 export const Perfil = styled.div`
