@@ -11,15 +11,10 @@
       "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#3C3F51",
+  "background_color": "#282A34"
 }

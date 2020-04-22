@@ -7,6 +7,7 @@ import {
 
 import NoMatch from './pages/404';
 import Home from './pages/Home'
+import Stories from './pages/Stories'
 
 export default function App() {
   return (
@@ -16,6 +17,8 @@ export default function App() {
       <Switch>
 
         <Route exact path="/" component={Home} />
+
+        <Route exact path="/stories" component={Stories} />
 
         <Route path="*" component={NoMatch}/>
 

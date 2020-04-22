@@ -52,7 +52,7 @@ export const LogoName = styled.img`
   margin-top: 10px;
   margin-left: 10px;
 
-  filter: invert(1);
+  filter: ${({ theme }) => theme.name == 'Dark' ? 'invert(1)' : null };
 `;
 
 export const Perfil = styled.div`
@@ -67,7 +67,7 @@ export const Perfil = styled.div`
 
   ${({ width }) => console.log(width)}
   img {
-    width: ${({ width }) => width<100 ? 50 : null};
+    width: ${({ width }) => width<100 ? 70 : null};
   }
 `;
 
@@ -83,6 +83,8 @@ export const Text = styled.p`
   font-size: ${({ size = 0.8 }) => size}em;
   font-weight: ${({ bold = 0 }) => bold ? 'bold' : bold };
   font-family: 'Open Sans', Roboto, Helvetica, Arial, sans-serif;
+
+  opacity: ${({ opacity = 1 }) => opacity };
 `;
 
 export const Neck = styled.div`

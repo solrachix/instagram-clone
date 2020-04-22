@@ -53,20 +53,20 @@ function NavBar({ componet, ...props }) {
           img="https://avatars2.githubusercontent.com/u/57706806?s=460&u=d99f75dd759767691aecc7463b92fa022a4b01ee&v=4" />
 
         <Text style={{display: width < delimiter ? 'none': null}} size={0.8} bold={600} top={20}>Carlos Miguel</Text>
-        <Text size={0.6} bold={500} color={darken(0.6, themeContext.text)}>@solrachix</Text>
+        <Text size={0.7} bold={500} opacity={0.4}>@solrachix</Text>
       
         <Neck parentWidth={width} delimiter={delimiter}>
           <Column>
             <Text size={0.8}>2.5 k</Text>
-            <Text size={0.6} color={themeContext.secundary}>Posts</Text>
+            <Text size={0.6} opacity={0.6}>Posts</Text>
           </Column>
           <Column>
             <Text size={0.8}>526</Text>
-            <Text size={0.6} color={themeContext.secundary}>Followers</Text>
+            <Text size={0.6} opacity={0.6}>Followers</Text>
           </Column>
           <Column>
             <Text size={0.8}>46</Text>
-            <Text size={0.6} color={themeContext.secundary}>Following</Text>
+            <Text size={0.6} opacity={0.6}>Following</Text>
           </Column>
         </Neck>
 
