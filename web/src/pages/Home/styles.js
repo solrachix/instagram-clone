@@ -106,10 +106,12 @@ export const StoriesContent = styled.div`
     min-width: 1000px;
     min-height: 90px;
 
-    display: flex;
+    display: -webkit-box;
+
+    /* display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: stretch; 
+    align-items: stretch;  */
   }
 `;
 
@@ -138,7 +140,7 @@ export const Text = styled.p`
 
 //icons
 
-const { IoIosNotificationsOutline } = require('react-icons/io'),
+const { IoIosNotificationsOutline, IoIosArrowBack } = require('react-icons/io'),
       { FiPlus } = require('react-icons/fi'),
       { Airplane } = require('../../components/icons');
 
@@ -159,6 +161,11 @@ export const Plus = styled(FiPlus)`
   border-radius: 50px;
 `;
 
+export const ArrrowLeft = styled(IoIosArrowBack)`
+  fill: ${({ theme }) => theme.colors.text };
+
+  padding: 5px;
+`;
 
 
 
@@ -169,12 +176,17 @@ export const Plus = styled(FiPlus)`
 export const ToRecall = styled.div`
   position: absolute;
   top: 80%;
-  margin-left: 17.5%;
+  margin-left: 18.5%;
 
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 
-  background-color: red;
+  background-color: ${({ theme }) => theme.colors.secundary };
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   z-index: 30;
   cursor: grab;

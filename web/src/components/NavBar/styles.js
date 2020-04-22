@@ -24,16 +24,35 @@ export const Header = styled.header`
   width: 100%;
   height: 50px;
 
+  /* padding-right: ${({ parentWidth, delimiter }) => parentWidth < delimiter ? 0:30}px; */
   margin-top: -10px;
 
   display: flex;
-  justify-content: flex-start;
+  justify-content: ${({ parentWidth, delimiter }) => parentWidth < delimiter ? 'center': 'flex-start'};
   align-items: center;
+
+  @media (max-width: 800px){
+    justify-content: center;
+    .LogoName{
+      display: none;
+    }
+  }
+  
 `;
 
 export const Logo = styled.img`
   width: 30px;
   height: 30px;
+`;
+
+export const LogoName = styled.img`
+  width: 100px;
+  height: 30px;
+  
+  margin-top: 10px;
+  margin-left: 10px;
+
+  filter: invert(1);
 `;
 
 export const Perfil = styled.div`

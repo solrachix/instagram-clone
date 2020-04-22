@@ -20,7 +20,8 @@ export const Container = styled.div`
 export const Input = styled.input`
   width: 90%;
   height: inherit;
-
+  margin-left: 15px;
+  
   background: transparent;
   color: ${({ theme }) => rgba(theme.colors.text, 0.2) };
 

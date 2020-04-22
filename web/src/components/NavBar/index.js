@@ -3,13 +3,14 @@ import { ThemeContext } from 'styled-components';
 import { darken } from 'polished';
 
 import InstaLogo from '../../assets/logo.svg'
+import InstaLogoName from '../../assets/logoName.png'
 
 import { GoSearch } from 'react-icons/go'
 import { FiLogOut } from 'react-icons/fi'
 
 import Avatar from '../Avatar';
 import { Container,
-   Header, Logo,
+   Header, Logo, LogoName,
    Perfil, Text, Neck, Column, Body, Row, Footer
 } from './styles';
 
@@ -40,12 +41,13 @@ function NavBar({ componet, ...props }) {
 
   return (
     <Container {...props}>
-      <Header>
+      <Header parentWidth={width} delimiter={delimiter}>
         <Logo src={InstaLogo}/>
+        <LogoName className="LogoName" style={{display: width < delimiter ? 'none': null}} src={InstaLogoName}/>
       </Header>
 
       <Perfil width={width}>
-        <Avatar className="predestinedToDisappear"
+        <Avatar
           loading={false}
           width={width<delimiter ? 50 : 100}
           img="https://avatars2.githubusercontent.com/u/57706806?s=460&u=d99f75dd759767691aecc7463b92fa022a4b01ee&v=4" />

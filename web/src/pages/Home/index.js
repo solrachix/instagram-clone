@@ -7,11 +7,11 @@ import Feed from '../../components/Feed';
 import { Container, Text,
   Content, Header, Bell, Direct, AddPhoto, Plus,
   Body, Stories, StoriesContent, Avatar,
-  ToRecall
+  ToRecall, ArrrowLeft
 } from './styles';
 
 export default function Home() {
-  const [ stories, setStories ] = useState([1,2,3,4,5,6,8,9,10]);
+  const [ stories, setStories ] = useState([1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20]);
 
   const ToRecallRef = createRef();
   const [ windowWidth, setWindowWidth ] = useState(window.innerWidth);
@@ -39,7 +39,7 @@ export default function Home() {
     // CalcPorcentagem({ Num:mouseX, windowWidth})
     if (isMove) {
       const elem = ToRecallRef.current;
-      const limitFinal = 17.5;
+      const limitFinal = 18.5;
       const limitInicial = 5
       e.preventDefault();
 
@@ -77,17 +77,19 @@ export default function Home() {
   return (
     <Container>
       <NavBar id="#navbar" componet={<div/>}/>
+
       <ToRecall
         ref={ToRecallRef}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
-      />
+      ><ArrrowLeft size={30} /></ToRecall>
+
       <Content id="#content">
           <Header>
             <Input placeholder="Search" />
 
-            <div className="">
+            <div>
               <Bell size={25} />
               <Direct size={25} />
               <AddPhoto>
@@ -114,8 +116,7 @@ export default function Home() {
 
             </Stories>
             
-            <Feed>
-            </Feed>
+            <Feed />
 
           </Body>
         </Content>
