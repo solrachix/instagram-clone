@@ -1,3 +1,4 @@
+
 <div  align="center" style="display:flex; justify-content: center;align-items: center;flex-direction: colunm">
 	<img  alt="Instagram Clone"  src="https://github.com/solrachix/instagram-clone/blob/master/assets/logo.png?raw=true"  width="80px"  style="border-radius:16px;"/>
 	<h2  align="center">Intagram clone</h2>
@@ -5,7 +6,7 @@
 </div>
 
 <h3  align="center" >
-Monitor COVID-19 in your country and in the world, view line and circle graphs, maps, among other information.
+This repository brings the reconstruction of instagram, both in its Mobile and Web environment. Understand, although expired, this is not just a copy but a reconstruction for <b>studies</b>.
 </h3>
 
 <p  align="center">
@@ -67,8 +68,16 @@ target="_blank" >
 ## :books: Technologies
 
 ### Web
-
-
+* **polished**: ^3.5.2
+- #### React
+	* **react**:  ^16.13.1
+	* **react-dom**:  ^16.13.1
+	* **react-helmet**:  ^6.0.0
+	* **react-icons**:  ^3.10.0
+	* **react-router-dom**:  ^5.1.2
+	* **react-scripts**:  3.4.1
+* **react-lottie**:  ^1.2.3
+* **styled-components**:  ^5.1.0
 
 ### Mobile
 - #### React navigation
@@ -76,7 +85,7 @@ target="_blank" >
 * **@react-native-community/masked-view**: 0.1.5
 * **@react-navigation/native**: ^5.1.3
 * **@react-navigation/stack**: ^5.2.6
-* **axio**s: ^0.19.2
+* **axios**: ^0.19.2
 * **expo**: ~36.0.0
 * **expo-constants**: ~8.0.0
 * **expo-mail-composer**: ~8.0.0
