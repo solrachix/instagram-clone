@@ -81,30 +81,29 @@ target="_blank" >
 
 ### Mobile
 - #### React navigation
-
-* **@react-native-community/masked-view**: 0.1.5
-* **@react-navigation/native**: ^5.1.3
-* **@react-navigation/stack**: ^5.2.6
-* **axios**: ^0.19.2
-* **expo**: ~36.0.0
-* **expo-constants**: ~8.0.0
-* **expo-mail-composer**: ~8.0.0
-* **intl**: ^1.2.5
-* **react-native-svg**: 9.13.3
-* **react-native-svg-charts**: ^5.3.0
-* **react-native-webview**: 7.4.3
+	* **@react-native-community/masked-view**: 0.1.5
+	* **@react-navigation/native**: ^5.1.3
+	* **@react-navigation/stack**: ^5.2.6
+	* **axios**: ^0.19.2
+	* **expo**: ~36.0.0
+	* **expo-constants**: ~8.0.0
+	* **expo-mail-composer**: ~8.0.0
+	* **intl**: ^1.2.5
+	* **react-native-svg**: 9.13.3
+	* **react-native-svg-charts**: ^5.3.0
+	* **react-native-webview**: 7.4.3
 
 - #### React
-* **react**: ~16.9.0
-* **react-dom**: ~16.9.0
-* **react-native**: https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz
-* **react-native-gesture-handler**: ~1.5.0
-* **react-native-maps**: 0.26.1
-* **react-native-reanimated**: ~1.4.0
-* **react-native-safe-area-contex**: 0.6.0
-* **react-native-screens**: 2.0.0-alpha.12
-* **react-native-web**: ~0.11.7
-* **styled-components**: ^5.0.1  
+	* **react**: ~16.9.0
+	* **react-dom**: ~16.9.0
+	* **react-native**: https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz
+	* **react-native-gesture-handler**: ~1.5.0
+	* **react-native-maps**: 0.26.1
+	* **react-native-reanimated**: ~1.4.0
+	* **react-native-safe-area-contex**: 0.6.0
+	* **react-native-screens**: 2.0.0-alpha.12
+	* **react-native-web**: ~0.11.7
+	* **styled-components**: ^5.0.1  
 
 ### Prerequisites
 If you do not have any of the software below, follow the link to install
