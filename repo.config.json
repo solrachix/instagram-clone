@@ -1,0 +1,9 @@
+{
+  "project_name": "Instagram redesign",
+  "type": "web",
+  
+  "template_url": "./assets/Web.png",
+  "logo_url": "./assets/logo.png",
+
+  "web": "./"
+}
