@@ -1,6 +1,6 @@
 
-<div  align="center" style="display:flex; justify-content: center;align-items: center;flex-direction: colunm">
-	<img  alt="Instagram Clone"  src="https://github.com/solrachix/instagram-clone/blob/master/assets/logo.png?raw=true"  width="80px"  style="border-radius:16px;"/>
+<div  align="center">
+	<img  alt="Instagram Clone"  src="https://github.com/solrachix/instagram-clone/blob/master/assets/logo.png?raw=true"  width="80px"  />
 	<h2  align="center">Intagram clone</h2>
 	<img  alt="Instagram Clone"  src="https://github.com/solrachix/instagram-clone/blob/master/assets/Web.png?raw=true"  width="800px"/>
 </div>
@@ -56,7 +56,7 @@ target="_blank" >
 ## Demonstration
 
 <p  align="center">
-<img  alt="Instagram Clone Demonstration"  src="https://github.com/solrachix/instagram-clone/blob/master/assets/demonstration.gif?raw=true"  width="800px"/>
+<img  alt="Instagram Clone Demonstration"  src="https://github.com/solrachix/instagram-clone/blob/master/assets/demonstration.gif?raw=true"  width="800px" />
 </p>
 
   
