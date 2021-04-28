@@ -2,7 +2,7 @@
 <div  align="center">
 	<img  alt="Instagram Clone"  src="https://github.com/solrachix/instagram-clone/blob/master/assets/logo.png?raw=true"  width="80px"  />
 	<h2  align="center">Intagram clone</h2>
-	<img  alt="Instagram Clone"  src="https://github.com/solrachix/instagram-clone/blob/master/assets/Web.png?raw=true"  width="800px"/>
+	<img  alt="Instagram Clone"  src="https://github.com/solrachix/instagram-clone/blob/master/assets/template-web.png?raw=true"  width="800px"/>
 </div>
 
 <h3  align="center" >
